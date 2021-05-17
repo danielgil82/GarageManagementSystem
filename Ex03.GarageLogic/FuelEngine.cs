@@ -8,11 +8,6 @@ namespace Ex03.GarageLogic
     {
         private readonly eTypeOfFuel r_TypeOfFuel;
 
-        public FuelEngine(float i_MaxEnergy, eTypeOfFuel i_TypeOfFuel) : base(i_MaxEnergy)
-        {
-            r_TypeOfFuel = i_TypeOfFuel;
-        }
-
         public enum eTypeOfFuel
         {
             None,
@@ -20,6 +15,11 @@ namespace Ex03.GarageLogic
             Octan95,
             Octan96,
             Octan98
+        }
+
+        public FuelEngine(float i_MaxEnergy, eTypeOfFuel i_TypeOfFuel) : base(i_MaxEnergy)
+        {
+            r_TypeOfFuel = i_TypeOfFuel;
         }
 
         public eTypeOfFuel TypeOfFuel

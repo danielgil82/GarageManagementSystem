@@ -95,7 +95,7 @@ namespace Ex03.GarageLogic
         {
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                ListOfWheels.Add(new Wheel(i_MaxAirPressureForWheels));
+                listOfWheels.Add(new Wheel(i_MaxAirPressureForWheels));
             }
         }
 
@@ -116,10 +116,10 @@ Max air pressure of wheels : {8}",
                 Engine.LeftEnergy,
                 Engine.MaxEnergy,
                 Engine.LeftEnergyPercentage,
-                ListOfWheels.Count,
-                ListOfWheels[0].ManufactureName,
-                ListOfWheels[0].CurrentAirPressure,
-                ListOfWheels[0].MaxAirPressure);
+                listOfWheels.Count,
+                listOfWheels[0].ManufactureName,
+                listOfWheels[0].CurrentAirPressure,
+                listOfWheels[0].MaxAirPressure);
 
             return msg;
         }
@@ -145,7 +145,7 @@ Max air pressure of wheels : {8}",
             }
         }
 
-        public List<Wheel> ListOfWheels
+        private List<Wheel> listOfWheels
         {
             get
             {
