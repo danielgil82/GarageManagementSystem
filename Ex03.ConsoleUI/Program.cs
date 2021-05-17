@@ -9,8 +9,8 @@ namespace Ex03.ConsoleUI
     {
         public static void Main(string[] args)
         {
-            UiMenu man = new UiMenu();
-            man.Ex3();
+            UiMenu uiMenu = new UiMenu();
+            uiMenu.Ex3();
         }
     }
 }
