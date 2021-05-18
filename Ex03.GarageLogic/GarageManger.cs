@@ -37,13 +37,13 @@ namespace Ex03.GarageLogic
                 set { m_CurrentVehicle = value; }
             }
 
-            public string OwnerName
+            internal string OwnerName
             {
                 get { return m_OwnerName; }
                 set { m_OwnerName = value; }
             }
 
-            public string PhoneNumber
+            internal string PhoneNumber
             {
                 get { return m_PhoneNumber; }
                 set { m_PhoneNumber = value; }
