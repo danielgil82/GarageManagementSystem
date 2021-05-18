@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Policy;
 using System.Text;
 using Ex03.GarageLogic;
 
@@ -8,10 +6,22 @@ namespace Ex03.ConsoleUI
 {
     public class UiMenu
     {
-       // private GarageManger m_GarageManger = new GarageManger();
         private UiManager m_UiManager = new UiManager();
-        
-        public void Ex3()
+
+        private enum eMenu : byte
+        {
+            None,
+            AddNewVehicle,
+            PresentLicensePlates,
+            ChangeTheStateOfTheVehicle,
+            PumpAirInTheWheelsToMax,
+            RefuelYourVehicle,
+            ChargeYourVehicle,
+            DisplayInfo,
+            Exit
+        }
+
+        public void Start()
         {
             byte numberForParse;
             bool continuteOrNot = true;
@@ -20,7 +30,7 @@ namespace Ex03.ConsoleUI
 
             garageUi.Append("Hello user: ");
             garageUi.AppendLine();
-            garageUi.Append("1) Add car to the garage");
+            garageUi.Append("1) Add vehicle to the garage");
             garageUi.AppendLine();
             garageUi.Append("2) Present the license plates of cars in the garage");
             garageUi.AppendLine();
@@ -28,15 +38,15 @@ namespace Ex03.ConsoleUI
             garageUi.AppendLine();
             garageUi.Append("4) Pump air into the wheels of a car to the max");
             garageUi.AppendLine();
-            garageUi.Append("5) Refuel a car");
+            garageUi.Append("5) Refuel your vehicle");
             garageUi.AppendLine();
-            garageUi.Append("6) Charge a car");
+            garageUi.Append("6) Charge your vehicle");
             garageUi.AppendLine();
             garageUi.Append("7) Display info about a car");
             garageUi.AppendLine();
             garageUi.Append("8) Exit");
-            garageUi.AppendLine(); 
-            garageUi.AppendLine(); 
+            garageUi.AppendLine();
+            garageUi.AppendLine();
             garageUi.Append("Enter your choice:");
 
             while (continuteOrNot)
@@ -46,15 +56,20 @@ namespace Ex03.ConsoleUI
                 Console.Clear();
                 try
                 {
-                  if(!byte.TryParse(userChoice, out numberForParse))
-                  {
-                      throw new FormatException("Wrong input");
-                  }
+                    if (!byte.TryParse(userChoice, out numberForParse))
+                    {
+                        throw new FormatException("Wrong input");
+                    }
 
-                  if (!LetTheUserChoose(numberForParse))
-                  {
-                      continuteOrNot = false;
-                  }
+                    if (numberForParse < 1 || numberForParse > 8)
+                    {
+                        throw new ValueOutOfRangeException(8, 1);
+                    }
+
+                    if (!LetTheUserChoose(numberForParse))
+                    {
+                        continuteOrNot = false;
+                    }
                 }
                 catch (ValueOutOfRangeException ex)
                 {
@@ -75,46 +90,46 @@ namespace Ex03.ConsoleUI
 
         public bool LetTheUserChoose(byte i_UserChoice)
         {
-            bool continuteOrNot = true;
+            eMenu menu = eMenu.None;
+            bool continueOrNot = true;
 
-            switch (i_UserChoice)
+            menu = (eMenu)Enum.Parse(typeof(eMenu), i_UserChoice.ToString());
+            switch (menu)
             {
-                case 1:
+                case eMenu.AddNewVehicle:
                     m_UiManager.AddNewVehicleToTheGarage();
                     break;
-                case 2:
+                case eMenu.PresentLicensePlates:
                     m_UiManager.DisplayingVehiclesLicenseNumber();
                     break;
-                case 3:
+                case eMenu.ChangeTheStateOfTheVehicle:
                     m_UiManager.ChangeVehiclesStatusInTheGarage();
                     break;
-                case 4:
+                case eMenu.PumpAirInTheWheelsToMax:
                     m_UiManager.FillAirToMaximum();
                     break;
-                case 5:
+                case eMenu.RefuelYourVehicle:
                     m_UiManager.FillFuelVehicleTank();
                     break;
-                case 6:
+                case eMenu.ChargeYourVehicle:
                     m_UiManager.ChargeElectricalVehicle();
                     break;
-                case 7:
+                case eMenu.DisplayInfo:
                     m_UiManager.DisplayVehicleInformation();
                     break;
-                case 8:
-                    continuteOrNot = false;
+                case eMenu.Exit:
+                    continueOrNot = false;
                     break;
-                default:
-                    throw new ValueOutOfRangeException(8, 1);
             }
 
-            if (i_UserChoice != 8)
+            if (menu != eMenu.Exit)
             {
                 Console.WriteLine("Press any key to return to main menu");
                 Console.ReadKey();
                 Console.Clear();
             }
 
-            return continuteOrNot;
+            return continueOrNot;
         }
     }
 }

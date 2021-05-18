@@ -36,7 +36,7 @@ namespace Ex03.ConsoleUI
                 m_GarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(userChoiceForVehicleType, vehicleTypesForValidate);
                 vehicleInGarage = m_GarageManger.CreateVehicleToTheGarage(usersLicenseNumber, userChoiceForVehicleType);
                 EnteringInfo(vehicleInGarage);
-                m_GarageManger.VehicleInGarageDictionary.Add(vehicleInGarage.CurrentVehicle.LicenseNumber, vehicleInGarage);
+                m_GarageManger.AddNewVehicleToTheDictionary(vehicleInGarage);
             }
             catch (FormatException ex)
             {
@@ -58,7 +58,7 @@ namespace Ex03.ConsoleUI
             EnteringUniqueInfo(io_VehicleInGarage);
         }
 
-        internal void EnteringGeneralInfo(GarageManger.VehicleInGarage io_VehicleInGarage)
+        internal void EnteringGeneralInfo(GarageManger.VehicleInGarage i_VehicleInGarage)
         {
             string fullName = string.Empty;
             string phoneNumber = string.Empty;
@@ -77,10 +77,8 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please enter the manufacture of the wheels: ");
             manufactureOfTheWheels = Console.ReadLine();
             ValidateThatTheInputIsNotEmpty(manufactureOfTheWheels);
-            io_VehicleInGarage.OwnerName = fullName;
-            io_VehicleInGarage.PhoneNumber = phoneNumber;
-            io_VehicleInGarage.CurrentVehicle.ModelName = modelName;
-            m_GarageManger.InsertManufactureName(io_VehicleInGarage, manufactureOfTheWheels);
+            m_GarageManger.AddGeneralInfo(i_VehicleInGarage, fullName, phoneNumber, modelName);
+            i_VehicleInGarage.CurrentVehicle.InsertManufactureName(manufactureOfTheWheels);
         }
 
         internal void ValidateThatTheInputIsNotEmpty(string i_Input)

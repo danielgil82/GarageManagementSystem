@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
             r_MaxEnergy = i_MaxEnergy;
         }
 
-        public float LeftEnergyPercentage
+        internal float LeftEnergyPercentage
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float LeftEnergy
+        internal float LeftEnergy
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float MaxEnergy
+        internal float MaxEnergy
         {
             get
             {

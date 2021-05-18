@@ -23,19 +23,6 @@ namespace Ex03.GarageLogic
             Engine = new FuelEngine(i_MaxTankCapacity, i_TypeOfFuel);
         }
 
-        public bool IsCarryingDangerousMateriales
-        {
-            get { return m_IsCarryingDangerousMateriales; }
-
-            set { m_IsCarryingDangerousMateriales = value; }
-        }
-
-        public float MaxWeightLoad
-        {
-            get { return m_MaxWeightLoad; }
-            set { m_MaxWeightLoad = value; }
-        }
-
         internal sealed override string DisplayVehicleInfo()
         {
             string msg = base.DisplayVehicleInfo();
@@ -43,8 +30,8 @@ namespace Ex03.GarageLogic
             msg += string.Format(@"
 Is carrying dangerous materials: {0}
 Max wight load: {1}", 
-                IsCarryingDangerousMateriales, 
-                MaxWeightLoad);
+                m_IsCarryingDangerousMateriales, 
+                m_MaxWeightLoad);
 
             return msg;
         }
@@ -64,18 +51,41 @@ Max wight load: {1}",
             switch (i_KeyMessage)
             {
                 case k_DangerMaterialsMessage:
-                    ValidationsForNoneMenuQuestions.ValidationCheckingIfCarryingDangerousChemicals(i_UserInput);
+                    validationCheckingIfCarryingDangerousChemicals(i_UserInput);
                     if (i_UserInput == "Yes")
                     {
-                        IsCarryingDangerousMateriales = true;
+                        m_IsCarryingDangerousMateriales = true;
                     }
 
                     break;
 
                 case k_MaxWightLoadMessage:
-                    ValidationsForNoneMenuQuestions.ValidatingMaxCarryWeight(i_UserInput);
-                    MaxWeightLoad = float.Parse(i_UserInput);
+                    validatingMaxCarryWeight(i_UserInput);
+                    m_MaxWeightLoad = float.Parse(i_UserInput);
                     break;
+            }
+        }
+
+        private static void validationCheckingIfCarryingDangerousChemicals(string i_UserChoice)
+        {
+            if (i_UserChoice != "Yes" && i_UserChoice != "No")
+            {
+                throw new ArgumentException("Only Yes or No!");
+            }
+        }
+
+        private static void validatingMaxCarryWeight(string i_UserInput)
+        {
+            float numberForParse;
+
+            if (!float.TryParse(i_UserInput, out numberForParse))
+            {
+                throw new FormatException("Wrong input");
+            }
+
+            if (numberForParse < 0 || numberForParse > 3000)
+            {
+                throw new ValueOutOfRangeException(3000f, 0f);
             }
         }
     }

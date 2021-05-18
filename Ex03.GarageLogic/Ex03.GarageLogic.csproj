@@ -47,7 +47,6 @@
     <Compile Include="GarageManger.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Truck.cs" />
-    <Compile Include="ValidationsForNoneMenuQuestions.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricalEngine : Engine
     {
-        public ElectricalEngine(float i_MaxEnergy) : base(i_MaxEnergy)
+        internal ElectricalEngine(float i_MaxEnergy) : base(i_MaxEnergy)
         {
         }
 

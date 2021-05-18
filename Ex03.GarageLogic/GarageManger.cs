@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Text;
 
 namespace Ex03.GarageLogic
@@ -64,12 +65,9 @@ Type of vehicle: {3}",
             }
         }
 
-        public Dictionary<string, VehicleInGarage> VehicleInGarageDictionary
+        public void AddNewVehicleToTheDictionary(VehicleInGarage i_VehicleToAdd)
         {
-            get
-            {
-                return r_VehiclesInGarageDictionary;
-            }
+            r_VehiclesInGarageDictionary.Add(i_VehicleToAdd.CurrentVehicle.LicenseNumber, i_VehicleToAdd);
         }
 
         public VehicleInGarage CreateVehicleToTheGarage(string i_UsersLicenseNumber, string i_UserChoice)
@@ -163,10 +161,7 @@ Type of vehicle: {3}",
         public void FillAirInTheTiresToTheMaximum(string i_LicenseNumber)
         {
             ValidateLicenseNumber(i_LicenseNumber);
-            foreach (Vehicle.Wheel wheel in r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.ListOfWheels)
-            {
-                wheel.PumpingAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
-            }
+            r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.PumpingAirToTheMax();
         }
 
         public void ValidateUsersInputForMenuInTheRange(byte i_SizeOfCurrentEnum, string i_UserChoice)
@@ -203,12 +198,12 @@ Type of vehicle: {3}",
 
             validatingUserInputAsFloatNumber(i_MinutesToCharge);
             numberToParse = float.Parse(i_MinutesToCharge);
-            (VehicleInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine as ElectricalEngine).ChargingBattery(numberToParse / 60);
+            (r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine as ElectricalEngine).ChargingBattery(numberToParse / 60);
         }
 
         public void CheckIfTheVehicleHasElectricalEngine(string i_LicenseNumber)
         {
-            if (!(VehicleInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine is ElectricalEngine))
+            if (!(r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine is ElectricalEngine))
             {
                 throw new FormatException("It's not an Electrical vehicle ");
             }
@@ -226,7 +221,7 @@ Type of vehicle: {3}",
 
         public void CheckIfTheVehicleHasFuelEngine(string i_LicenseNumber)
         {
-            if (!(VehicleInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine is FuelEngine))
+            if (!(r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.Engine is FuelEngine))
             {
                 throw new FormatException("It's not a regular vehicle ");
             }
@@ -263,12 +258,11 @@ Type of vehicle: {3}",
             }
         }
 
-        public void InsertManufactureName(GarageManger.VehicleInGarage io_VehicleInGarage, string i_ManufactureOfTheWheels)
+        public void AddGeneralInfo(VehicleInGarage io_VehicleInGarage, string i_OwnerName, string i_PhoneNumber, string i_ModelName)
         {
-            foreach (Vehicle.Wheel wheel in io_VehicleInGarage.CurrentVehicle.ListOfWheels)
-            {
-                wheel.ManufactureName = i_ManufactureOfTheWheels;
-            }
+            io_VehicleInGarage.OwnerName = i_OwnerName;
+            io_VehicleInGarage.PhoneNumber = i_PhoneNumber;
+            io_VehicleInGarage.CurrentVehicle.ModelName = i_ModelName;
         }
 
         public StringBuilder GeneralMenu(Enum i_TypeOfEnum)

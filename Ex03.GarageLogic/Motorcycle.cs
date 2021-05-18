@@ -12,34 +12,17 @@ namespace Ex03.GarageLogic
         private eLicenseType m_LicenseType;
         private int m_EngineVolume;
 
-        public Motorcycle(string i_LicenseNumber, byte i_NumberOfWheels) : base(i_LicenseNumber, i_NumberOfWheels)
+        internal Motorcycle(string i_LicenseNumber, byte i_NumberOfWheels) : base(i_LicenseNumber, i_NumberOfWheels)
         {
         }
 
-        public int EngineVolume
+        private enum eLicenseType
         {
-            get
-            {
-                return m_EngineVolume;
-            }
-
-            set
-            {
-                m_EngineVolume = value;
-            }
-        }
-
-        public eLicenseType LicenseType
-        {
-            get
-            {
-                return m_LicenseType;
-            }
-
-            set
-            {
-                m_LicenseType = value;
-            }
+            None,
+            A,
+            B1,
+            BB,
+            AA
         }
 
         internal override string DisplayVehicleInfo()
@@ -48,8 +31,8 @@ namespace Ex03.GarageLogic
             msg += string.Format(@"
 License type: {0}
 Engine Volume: {1}",
-                LicenseType, 
-                EngineVolume);
+                m_LicenseType, 
+                m_EngineVolume);
 
             return msg;
         }
@@ -74,22 +57,28 @@ Engine Volume: {1}",
                 case k_MotorcycleLicenseTypeMessage:
                     eLicenseType noneLicenseType = eLicenseType.None;
                     tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneLicenseType);
-                    LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_UserInput);
+                    m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_UserInput);
                     break;
                 case k_MotorcycleEngineVolumeMessage:
-                    ValidationsForNoneMenuQuestions.ValidatingEngineVolumeInput(i_UserInput);
-                    EngineVolume = int.Parse(i_UserInput);
+                    validatingEngineVolumeInput(i_UserInput);
+                    m_EngineVolume = int.Parse(i_UserInput);
                     break;
             }
         }
 
-        public enum eLicenseType
+        private static void validatingEngineVolumeInput(string i_UserInput)
         {
-            None,
-            A,
-            B1,
-            BB,
-            AA
+            int numberForParse;
+
+            if (!int.TryParse(i_UserInput, out numberForParse))
+            {
+                throw new FormatException("Wrong input");
+            }
+
+            if (numberForParse < 0)
+            {
+                throw new ValueOutOfRangeException(3000, 0);
+            }
         }
     }
 }

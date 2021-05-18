@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
             r_ListOfWheels = new List<Wheel>(i_NumberOfWheels);
         }
 
-        public Engine Engine
+        internal Engine Engine
         {
             get
             {
@@ -31,13 +31,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public class Wheel
+        private class Wheel
         {
             private readonly float r_MaxAirPressure;
             private string m_ManufactureName;
             private float m_CurrentAirPressure;
 
-            public Wheel(float i_MaxAirPressure)
+            internal Wheel(float i_MaxAirPressure)
             {
                 ManufactureName = string.Empty;
                 CurrentAirPressure = 0;
@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
                 }
             }
 
-            public string ManufactureName
+            internal string ManufactureName
             {
                 get
                 {
@@ -69,7 +69,7 @@ namespace Ex03.GarageLogic
                 }
             }
            
-            public float MaxAirPressure
+            internal float MaxAirPressure
             {
                 get
                 {
@@ -77,7 +77,7 @@ namespace Ex03.GarageLogic
                 }
             }
 
-            public float CurrentAirPressure
+            internal float CurrentAirPressure
             {
                 get
                 {
@@ -95,7 +95,7 @@ namespace Ex03.GarageLogic
         {
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                listOfWheels.Add(new Wheel(i_MaxAirPressureForWheels));
+                r_ListOfWheels.Add(new Wheel(i_MaxAirPressureForWheels));
             }
         }
 
@@ -116,15 +116,15 @@ Max air pressure of wheels : {8}",
                 Engine.LeftEnergy,
                 Engine.MaxEnergy,
                 Engine.LeftEnergyPercentage,
-                listOfWheels.Count,
-                listOfWheels[0].ManufactureName,
-                listOfWheels[0].CurrentAirPressure,
-                listOfWheels[0].MaxAirPressure);
+                r_ListOfWheels.Count,
+                r_ListOfWheels[0].ManufactureName,
+                r_ListOfWheels[0].CurrentAirPressure,
+                r_ListOfWheels[0].MaxAirPressure);
 
             return msg;
         }
        
-        public string ModelName
+        internal string ModelName
         {
             get
             {
@@ -137,7 +137,7 @@ Max air pressure of wheels : {8}",
             }
         }
 
-        public string LicenseNumber
+        internal string LicenseNumber
         {
             get
             {
@@ -145,11 +145,19 @@ Max air pressure of wheels : {8}",
             }
         }
 
-        private List<Wheel> listOfWheels
+        public void InsertManufactureName(string i_ManufactureOfTheWheels)
         {
-            get
+            foreach (Wheel wheel in r_ListOfWheels)
             {
-                return r_ListOfWheels;
+                wheel.ManufactureName = i_ManufactureOfTheWheels;
+            }
+        }
+
+        internal void PumpingAirToTheMax()
+        {
+            foreach (Wheel wheel in r_ListOfWheels)
+            {
+                wheel.PumpingAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
             }
         }
 

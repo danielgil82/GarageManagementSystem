@@ -12,7 +12,6 @@ namespace Ex03.GarageLogic
             byte i_NumberOfWheels,
             string i_LicenseNumber) : base(i_LicenseNumber, i_NumberOfWheels)
         {
-           // ListOfWheels = new List<Wheel>(i_NumberOfWheels);
             CreateTheWheels(i_MaxAirPressureForWheels, i_NumberOfWheels);
             Engine = new ElectricalEngine(i_MaxBatteryLife);
         }

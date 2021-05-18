@@ -12,37 +12,11 @@ namespace Ex03.GarageLogic
         private eCarColor m_CarColor;
         private eNumberOfDoors m_NumberOfDoors;
 
-        public Car(string i_LicenseNumber, byte i_NumberOfWheels) : base(i_LicenseNumber, i_NumberOfWheels)
+        internal Car(string i_LicenseNumber, byte i_NumberOfWheels) : base(i_LicenseNumber, i_NumberOfWheels)
         {
         }
 
-        public eCarColor CarColor
-        {
-            get
-            {
-                return m_CarColor;
-            }
-
-            set
-            {
-                m_CarColor = value;
-            }
-        }
-
-        public eNumberOfDoors NumberOfDoors
-        {
-            get
-            {
-                return m_NumberOfDoors;
-            }
-
-            set
-            {
-                m_NumberOfDoors = value;
-            }
-        }
-
-        public enum eCarColor
+        internal enum eCarColor
         {
             None,
             Red,
@@ -51,7 +25,7 @@ namespace Ex03.GarageLogic
             Black
         }
 
-        public enum eNumberOfDoors
+        internal enum eNumberOfDoors
         {
             None,
             TwoDoors,
@@ -82,12 +56,12 @@ namespace Ex03.GarageLogic
                 case k_CarColorMessage:
                     eCarColor noneCarColor = eCarColor.None;
                     tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneCarColor);
-                    CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), i_UserInput);
+                    m_CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), i_UserInput);
                     break;
                 case k_NumberOfDoorsMessage:
                     eNumberOfDoors noneNumberOfDoors = eNumberOfDoors.None;
                     tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneNumberOfDoors);
-                    NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_UserInput);
+                    m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_UserInput);
                     break;
             }
         }
@@ -99,8 +73,8 @@ namespace Ex03.GarageLogic
             msg += string.Format(@"
 Car color: {0}
 Number of Doors: {1}",
-                CarColor,
-                NumberOfDoors);
+                m_CarColor,
+                m_NumberOfDoors);
 
             return msg;
         }
