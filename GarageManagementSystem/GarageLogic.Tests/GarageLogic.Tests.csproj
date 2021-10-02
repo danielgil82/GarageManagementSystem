@@ -61,9 +61,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
+    <ProjectReference Include="..\..\Ex03.GarageLogic\GarageLogic.csproj">
       <Project>{1dfa26d4-5fb9-4e09-8bd9-07c8afdb4486}</Project>
-      <Name>Ex03.GarageLogic</Name>
+      <Name>GarageLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
