@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
     public class GarageManager
     {
         private const string m_InRepair = "1";
-        private readonly Dictionary<string, VehicleInGarage> r_VehiclesInGarageDictionary = new Dictionary<string, VehicleInGarage>();
+        private static readonly Dictionary<string, VehicleInGarage> r_VehiclesInGarageDictionary = new Dictionary<string, VehicleInGarage>();
 
         public class VehicleInGarage
         {
@@ -244,13 +244,13 @@ Type of vehicle: {3}",
             return r_VehiclesInGarageDictionary[i_LicenseNumber].DisplayVehicleInGarageInfo();
         }
 
-        public void ValidateLicenseNumberInput(string i_LicenseNumber)
+        public static void ValidateLicenseNumberInput(string i_LicenseNumber)
         {
             uint numberToParse;
 
             if (!uint.TryParse(i_LicenseNumber, out numberToParse))
             {
-                throw new FormatException("Wrong input");
+                throw new ArgumentException("Wrong input", "LicenseNumber");
             }
 
             //if (!r_VehiclesInGarageDictionary.ContainsKey(i_LicenseNumber))
@@ -259,14 +259,14 @@ Type of vehicle: {3}",
             //}
         }
 
-        public void isTheVehicleExists(string i_LicenseNumber)
+        public static void isTheVehicleExists(string i_LicenseNumber)
         {
             uint numberToParse;
             numberToParse = uint.Parse(i_LicenseNumber);
 
             if (!r_VehiclesInGarageDictionary.ContainsKey(i_LicenseNumber))
             {
-                throw new ArgumentException("There is no such car in the garage");
+                throw new ArgumentException("There is no such car in the garage", "UnknownLicenseNumber");
             }
         }
 
