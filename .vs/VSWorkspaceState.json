@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Ex03.GarageLogic",
-    "\\GarageManagementSystem",
-    "\\GarageManagementSystem\\GarageLogic.Tests"
+    "\\GarageManagementSystem"
   ],
-  "SelectedNode": "\\GarageManagementSystem\\GarageLogic.Tests\\xunit.runner.json",
+  "SelectedNode": "\\Ex03.GarageLogic\\Motorcycle.cs",
   "PreviewInSolutionExplorer": false
 }

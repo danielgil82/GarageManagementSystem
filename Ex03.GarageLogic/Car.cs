@@ -36,31 +36,31 @@ namespace Ex03.GarageLogic
 
         public sealed override Hashtable FetchUniqueInfo()
         {
-            GarageManger tempGarageManger = new GarageManger();
+            GarageManager tempGarageManager = new GarageManager();
             Hashtable extraInfoMenu = new Hashtable();
             eCarColor noneCarColor = eCarColor.None;
             eNumberOfDoors noneNumberOfDoors = eNumberOfDoors.None;
 
-            extraInfoMenu.Add(k_CarColorMessage, tempGarageManger.GeneralMenu(noneCarColor).ToString());
-            extraInfoMenu.Add(k_NumberOfDoorsMessage, tempGarageManger.GeneralMenu(noneNumberOfDoors).ToString());
+            extraInfoMenu.Add(k_CarColorMessage, tempGarageManager.GeneralMenu(noneCarColor).ToString());
+            extraInfoMenu.Add(k_NumberOfDoorsMessage, tempGarageManager.GeneralMenu(noneNumberOfDoors).ToString());
 
             return extraInfoMenu;
         }
 
         public sealed override void UpdateUniqueInfo(string i_KeyMessage, string i_UserInput)
         {
-            GarageManger tempGarageManger = new GarageManger();
+            GarageManager tempGarageManager = new GarageManager();
 
             switch (i_KeyMessage)
             {
                 case k_CarColorMessage:
                     eCarColor noneCarColor = eCarColor.None;
-                    tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneCarColor);
+                    tempGarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneCarColor);
                     m_CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), i_UserInput);
                     break;
                 case k_NumberOfDoorsMessage:
                     eNumberOfDoors noneNumberOfDoors = eNumberOfDoors.None;
-                    tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneNumberOfDoors);
+                    tempGarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneNumberOfDoors);
                     m_NumberOfDoors = (eNumberOfDoors)Enum.Parse(typeof(eNumberOfDoors), i_UserInput);
                     break;
             }

@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA1A100E-9310-4D82-A9C6-22847CDC20DB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Ex03.ConsoleUI</RootNamespace>
-    <AssemblyName>Ex03.ConsoleUI</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <ProjectGuid>{1DFA26D4-5FB9-4E09-8BD9-07C8AFDB4486}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ex03.GarageLogic</RootNamespace>
+    <AssemblyName>Ex03.GarageLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,17 +32,26 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
-      <Project>{1dfa26d4-5fb9-4e09-8bd9-07c8afdb4486}</Project>
-      <Name>Ex03.GarageLogic</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="UiManager.cs" />
-    <Compile Include="UiMenu.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CreatingConcreteVehicles.cs" />
+    <Compile Include="ElectricalCar.cs" />
+    <Compile Include="ElectricalEngine.cs" />
+    <Compile Include="ElectricalMotorcycle.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="FuelCar.cs" />
+    <Compile Include="FuelEngine.cs" />
+    <Compile Include="FuelMotorcycle.cs" />
+    <Compile Include="GarageManager.cs" />
+    <Compile Include="Motorcycle.cs" />
+    <Compile Include="Truck.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
+    <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
