@@ -160,7 +160,8 @@ Type of vehicle: {3}",
 
         public void FillAirInTheTiresToTheMaximum(string i_LicenseNumber)
         {
-            ValidateLicenseNumber(i_LicenseNumber);
+            ValidateLicenseNumberInput(i_LicenseNumber);
+            isTheVehicleExists(i_LicenseNumber);
             r_VehiclesInGarageDictionary[i_LicenseNumber].CurrentVehicle.PumpingAirToTheMax();
         }
 
@@ -243,7 +244,7 @@ Type of vehicle: {3}",
             return r_VehiclesInGarageDictionary[i_LicenseNumber].DisplayVehicleInGarageInfo();
         }
 
-        public void ValidateLicenseNumber(string i_LicenseNumber)
+        public void ValidateLicenseNumberInput(string i_LicenseNumber)
         {
             uint numberToParse;
 
@@ -251,6 +252,17 @@ Type of vehicle: {3}",
             {
                 throw new FormatException("Wrong input");
             }
+
+            //if (!r_VehiclesInGarageDictionary.ContainsKey(i_LicenseNumber))
+            //{
+            //    throw new ArgumentException("There is no such car in the garage");
+            //}
+        }
+
+        public void isTheVehicleExists(string i_LicenseNumber)
+        {
+            uint numberToParse;
+            numberToParse = uint.Parse(i_LicenseNumber);
 
             if (!r_VehiclesInGarageDictionary.ContainsKey(i_LicenseNumber))
             {

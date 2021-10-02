@@ -151,7 +151,8 @@ namespace Ex03.ConsoleUI
             licenseNumber = Console.ReadLine();
             try
             {
-                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.ValidateLicenseNumberInput(licenseNumber);
+                m_GarageManager.isTheVehicleExists(licenseNumber);
                 Console.Write("\nPlease enter the new state you'd like:");
                 Console.WriteLine(m_GarageManager.GeneralMenu(typeOfEnum));
                 Console.Write("Enter your choice: ");
@@ -209,7 +210,8 @@ namespace Ex03.ConsoleUI
             Console.WriteLine();
             try
             {
-                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.ValidateLicenseNumberInput(licenseNumber);
+                m_GarageManager.isTheVehicleExists(licenseNumber);
                 m_GarageManager.CheckIfTheVehicleHasFuelEngine(licenseNumber);
                 Console.Write("Choose the type of fuel you'd like to fill your vehicle with :");
                 Console.WriteLine(m_GarageManager.GeneralMenu(typeOfEnum));
@@ -245,7 +247,8 @@ namespace Ex03.ConsoleUI
 
             try
             {
-                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.ValidateLicenseNumberInput(licenseNumber);
+                m_GarageManager.isTheVehicleExists(licenseNumber);
                 m_GarageManager.CheckIfTheVehicleHasElectricalEngine(licenseNumber);
                 Console.WriteLine();
                 Console.WriteLine("Please enter how many minutes you'd like to charge your vehicle: ");
@@ -274,7 +277,8 @@ namespace Ex03.ConsoleUI
             licenseNumber = Console.ReadLine();
             try
             {
-                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.ValidateLicenseNumberInput(licenseNumber);
+                m_GarageManager.isTheVehicleExists(licenseNumber);
                 Console.WriteLine(m_GarageManager.DisplayVehicleInfo(licenseNumber));
             }
             catch (FormatException ex)
