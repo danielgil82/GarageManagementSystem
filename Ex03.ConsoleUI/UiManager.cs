@@ -10,33 +10,33 @@ namespace Ex03.ConsoleUI
 {
     internal class UiManager
     {
-        private GarageManger m_GarageManger = new GarageManger();
+        private GarageManager m_GarageManager = new GarageManager();
 
         internal void AddNewVehicleToTheGarage()
         {
             string userChoiceForVehicleType;
             string usersLicenseNumber;
             CreatingConcreteVehicles.eVehicleTypes vehicleTypesForValidate = CreatingConcreteVehicles.eVehicleTypes.None;
-            GarageManger.VehicleInGarage vehicleInGarage = new GarageManger.VehicleInGarage();
+            GarageManager.VehicleInGarage vehicleInGarage = new GarageManager.VehicleInGarage();
 
             Console.WriteLine("Hello, Please enter your license number between 0 - 7 digits positive number : ");
             usersLicenseNumber = Console.ReadLine();
             try
             {
-                m_GarageManger.ValidateUsersLicenseInput(usersLicenseNumber);
-                if (m_GarageManger.CheckIfTheVehicleAlreadyExists(usersLicenseNumber))
+                m_GarageManager.ValidateUsersLicenseInput(usersLicenseNumber);
+                if (m_GarageManager.CheckIfTheVehicleAlreadyExists(usersLicenseNumber))
                 {
-                    m_GarageManger.AlreadyExistsVehicle(usersLicenseNumber);
+                    m_GarageManager.AlreadyExistsVehicle(usersLicenseNumber);
                 }
 
                 Console.WriteLine("Choose the type of vehicle you'd like to enter to the garage : ");
-                Console.WriteLine(m_GarageManger.GeneralMenu(vehicleTypesForValidate));
+                Console.WriteLine(m_GarageManager.GeneralMenu(vehicleTypesForValidate));
                 Console.WriteLine("Enter your choice: ");
                 userChoiceForVehicleType = Console.ReadLine();
-                m_GarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(userChoiceForVehicleType, vehicleTypesForValidate);
-                vehicleInGarage = m_GarageManger.CreateVehicleToTheGarage(usersLicenseNumber, userChoiceForVehicleType);
+                m_GarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(userChoiceForVehicleType, vehicleTypesForValidate);
+                vehicleInGarage = m_GarageManager.CreateVehicleToTheGarage(usersLicenseNumber, userChoiceForVehicleType);
                 EnteringInfo(vehicleInGarage);
-                m_GarageManger.AddNewVehicleToTheDictionary(vehicleInGarage);
+                m_GarageManager.AddNewVehicleToTheDictionary(vehicleInGarage);
             }
             catch (FormatException ex)
             {
@@ -52,13 +52,13 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void EnteringInfo(GarageManger.VehicleInGarage io_VehicleInGarage)
+        internal void EnteringInfo(GarageManager.VehicleInGarage io_VehicleInGarage)
         {
             EnteringGeneralInfo(io_VehicleInGarage);
             EnteringUniqueInfo(io_VehicleInGarage);
         }
 
-        internal void EnteringGeneralInfo(GarageManger.VehicleInGarage i_VehicleInGarage)
+        internal void EnteringGeneralInfo(GarageManager.VehicleInGarage i_VehicleInGarage)
         {
             string fullName = string.Empty;
             string phoneNumber = string.Empty;
@@ -77,19 +77,19 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please enter the manufacture of the wheels: ");
             manufactureOfTheWheels = Console.ReadLine();
             ValidateThatTheInputIsNotEmpty(manufactureOfTheWheels);
-            m_GarageManger.AddGeneralInfo(i_VehicleInGarage, fullName, phoneNumber, modelName);
+            m_GarageManager.AddGeneralInfo(i_VehicleInGarage, fullName, phoneNumber, modelName);
             i_VehicleInGarage.CurrentVehicle.InsertManufactureName(manufactureOfTheWheels);
         }
 
         internal void ValidateThatTheInputIsNotEmpty(string i_Input)
         {
-            if (m_GarageManger.ValidateVehiclesGeneralInfo(i_Input))
+            if (m_GarageManager.ValidateVehiclesGeneralInfo(i_Input))
             {
                 throw new ArgumentException("Can't have no value");
             }
         }
 
-        internal void EnteringUniqueInfo(GarageManger.VehicleInGarage io_VehicleInGarage)
+        internal void EnteringUniqueInfo(GarageManager.VehicleInGarage io_VehicleInGarage)
         {
             Hashtable uniqueInfo = new Hashtable();
             string userChoice = string.Empty;
@@ -106,18 +106,18 @@ namespace Ex03.ConsoleUI
 
                 Console.WriteLine("Your choice: ");
                 userChoice = Console.ReadLine();
-                m_GarageManger.UpdateVehicleUniqueInfo(stringInfo, userChoice, io_VehicleInGarage);
+                m_GarageManager.UpdateVehicleUniqueInfo(stringInfo, userChoice, io_VehicleInGarage);
             }
         }
 
         internal void DisplayingVehiclesLicenseNumber()
         {
             string userInput;
-            GarageManger.VehicleInGarage.eStateInTheGarage typeOfEnum = GarageManger.VehicleInGarage.eStateInTheGarage.None;
+            GarageManager.VehicleInGarage.eStateInTheGarage typeOfEnum = GarageManager.VehicleInGarage.eStateInTheGarage.None;
 
             Console.Write("Enter how you'd want to filter all vehicles licenses, or display them all");
-            Console.Write(m_GarageManger.GeneralMenu(typeOfEnum));
-            Console.WriteLine(Enum.GetNames(typeof(GarageManger.VehicleInGarage.eStateInTheGarage)).Length + ") show all license numbers in the garage");
+            Console.Write(m_GarageManager.GeneralMenu(typeOfEnum));
+            Console.WriteLine(Enum.GetNames(typeof(GarageManager.VehicleInGarage.eStateInTheGarage)).Length + ") show all license numbers in the garage");
             Console.WriteLine();
             Console.WriteLine("Enter your choice: ");
             
@@ -125,7 +125,7 @@ namespace Ex03.ConsoleUI
             try
             {
                 StringBuilder displayingLicenseNumber;
-                displayingLicenseNumber = m_GarageManger.DisplayingLicenseNumberAccordingToState(userInput);
+                displayingLicenseNumber = m_GarageManager.DisplayingLicenseNumberAccordingToState(userInput);
                 Console.WriteLine();
                 Console.WriteLine("The license numbers are: ");
                 Console.WriteLine(displayingLicenseNumber);
@@ -144,21 +144,21 @@ namespace Ex03.ConsoleUI
         {
             string licenseNumber;
             string stateToBeChangedTo;
-            GarageManger.VehicleInGarage.eStateInTheGarage newState;
-            GarageManger.VehicleInGarage.eStateInTheGarage typeOfEnum = GarageManger.VehicleInGarage.eStateInTheGarage.None;
+            GarageManager.VehicleInGarage.eStateInTheGarage newState;
+            GarageManager.VehicleInGarage.eStateInTheGarage typeOfEnum = GarageManager.VehicleInGarage.eStateInTheGarage.None;
 
             Console.WriteLine("Please enter your license number: ");
             licenseNumber = Console.ReadLine();
             try
             {
-                m_GarageManger.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.ValidateLicenseNumber(licenseNumber);
                 Console.Write("\nPlease enter the new state you'd like:");
-                Console.WriteLine(m_GarageManger.GeneralMenu(typeOfEnum));
+                Console.WriteLine(m_GarageManager.GeneralMenu(typeOfEnum));
                 Console.Write("Enter your choice: ");
                 stateToBeChangedTo = Console.ReadLine();
-                m_GarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(stateToBeChangedTo, typeOfEnum);
-                m_GarageManger.ChangingTheStateOfTheVehicle(licenseNumber, stateToBeChangedTo);
-                newState = (GarageManger.VehicleInGarage.eStateInTheGarage)Enum.Parse(typeof(GarageManger.VehicleInGarage.eStateInTheGarage), stateToBeChangedTo);
+                m_GarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(stateToBeChangedTo, typeOfEnum);
+                m_GarageManager.ChangingTheStateOfTheVehicle(licenseNumber, stateToBeChangedTo);
+                newState = (GarageManager.VehicleInGarage.eStateInTheGarage)Enum.Parse(typeof(GarageManager.VehicleInGarage.eStateInTheGarage), stateToBeChangedTo);
                 Console.WriteLine("Changed status successfully to {0}", newState);
             }
             catch (FormatException ex)
@@ -180,7 +180,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please enter your license number: ");
             try
             {
-                m_GarageManger.FillAirInTheTiresToTheMaximum(Console.ReadLine());
+                m_GarageManager.FillAirInTheTiresToTheMaximum(Console.ReadLine());
                 Console.WriteLine("Pumped air to maximum successfully");
             }
             catch (FormatException ex)
@@ -209,17 +209,17 @@ namespace Ex03.ConsoleUI
             Console.WriteLine();
             try
             {
-                m_GarageManger.ValidateLicenseNumber(licenseNumber);
-                m_GarageManger.CheckIfTheVehicleHasFuelEngine(licenseNumber);
+                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.CheckIfTheVehicleHasFuelEngine(licenseNumber);
                 Console.Write("Choose the type of fuel you'd like to fill your vehicle with :");
-                Console.WriteLine(m_GarageManger.GeneralMenu(typeOfEnum));
+                Console.WriteLine(m_GarageManager.GeneralMenu(typeOfEnum));
                 Console.Write("Enter your choice: ");
                 typeOfFuel = Console.ReadLine();
-                m_GarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(typeOfFuel, typeOfEnum);
+                m_GarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(typeOfFuel, typeOfEnum);
                 Console.WriteLine();
                 Console.WriteLine("Please enter the amount you'd like to fill your fuel tank with: ");
                 amountToFill = Console.ReadLine();
-                m_GarageManger.FillingTheFuelTank(licenseNumber, typeOfFuel, amountToFill);
+                m_GarageManager.FillingTheFuelTank(licenseNumber, typeOfFuel, amountToFill);
                 Console.WriteLine("Vehicle with license number: {0} was Successfully fueled ", licenseNumber);
             }
             catch (FormatException ex)
@@ -245,12 +245,12 @@ namespace Ex03.ConsoleUI
 
             try
             {
-                m_GarageManger.ValidateLicenseNumber(licenseNumber);
-                m_GarageManger.CheckIfTheVehicleHasElectricalEngine(licenseNumber);
+                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                m_GarageManager.CheckIfTheVehicleHasElectricalEngine(licenseNumber);
                 Console.WriteLine();
                 Console.WriteLine("Please enter how many minutes you'd like to charge your vehicle: ");
                 minutesToCharge = Console.ReadLine();
-                m_GarageManger.ChargingElectricalVehicle(licenseNumber, minutesToCharge);
+                m_GarageManager.ChargingElectricalVehicle(licenseNumber, minutesToCharge);
                 Console.WriteLine("Vehicle with license number: {0} was Successfully charged ", licenseNumber);
             }
             catch (FormatException ex)
@@ -274,8 +274,8 @@ namespace Ex03.ConsoleUI
             licenseNumber = Console.ReadLine();
             try
             {
-                m_GarageManger.ValidateLicenseNumber(licenseNumber);
-                Console.WriteLine(m_GarageManger.DisplayVehicleInfo(licenseNumber));
+                m_GarageManager.ValidateLicenseNumber(licenseNumber);
+                Console.WriteLine(m_GarageManager.DisplayVehicleInfo(licenseNumber));
             }
             catch (FormatException ex)
             {

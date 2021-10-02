@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class GarageManger
+    public class GarageManager
     {
         private const string m_InRepair = "1";
         private readonly Dictionary<string, VehicleInGarage> r_VehiclesInGarageDictionary = new Dictionary<string, VehicleInGarage>();

@@ -39,11 +39,11 @@ Engine Volume: {1}",
 
         public sealed override Hashtable FetchUniqueInfo()
         {
-            GarageManger tempGarageManger = new GarageManger();
+            GarageManager tempGarageManager = new GarageManager();
             Hashtable extraInfoMenu = new Hashtable();
             eLicenseType noneLicenseType = eLicenseType.None;
 
-            extraInfoMenu.Add(k_MotorcycleLicenseTypeMessage, tempGarageManger.GeneralMenu(noneLicenseType).ToString());
+            extraInfoMenu.Add(k_MotorcycleLicenseTypeMessage, tempGarageManager.GeneralMenu(noneLicenseType).ToString());
             extraInfoMenu.Add(k_MotorcycleEngineVolumeMessage, null);
 
             return extraInfoMenu;
@@ -51,12 +51,12 @@ Engine Volume: {1}",
 
         public sealed override void UpdateUniqueInfo(string i_KeyMessage, string i_UserInput)
         {
-            GarageManger tempGarageManger = new GarageManger();
+            GarageManager tempGarageManager = new GarageManager();
             switch (i_KeyMessage)
             {
                 case k_MotorcycleLicenseTypeMessage:
                     eLicenseType noneLicenseType = eLicenseType.None;
-                    tempGarageManger.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneLicenseType);
+                    tempGarageManager.ValidateUsersInputBasedOnTheRangeOfThisEnum(i_UserInput, noneLicenseType);
                     m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_UserInput);
                     break;
                 case k_MotorcycleEngineVolumeMessage:
