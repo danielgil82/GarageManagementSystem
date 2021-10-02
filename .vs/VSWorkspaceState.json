@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Ex03.GarageLogic",
+    "\\GarageManagementSystem",
+    "\\GarageManagementSystem\\GarageLogic.Tests"
   ],
-  "SelectedNode": "\\GarageManagementSystem.sln",
+  "SelectedNode": "\\GarageManagementSystem\\GarageLogic.Tests\\xunit.runner.json",
   "PreviewInSolutionExplorer": false
 }
