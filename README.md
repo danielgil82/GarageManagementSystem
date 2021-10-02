@@ -10,7 +10,7 @@ Console application for Garage management, made in C# and .NET framework. Demons
 - Working with multiple projects
 - Exceptions
 - Object inheritance
-- unit testing 
+- Unit Testing 
 
  After submission we've improved more the styling and the classes organization.
 
