@@ -12,5 +12,4 @@ Console application for Garage management, made in C# and .NET framework. Demons
 - Object inheritance
 - Unit Testing via Xunit
 
- After submission we've improved more the styling and the classes organization.
 

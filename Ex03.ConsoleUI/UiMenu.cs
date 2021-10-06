@@ -7,7 +7,8 @@ namespace Ex03.ConsoleUI
     public class UiMenu
     {
         private UiManager m_UiManager = new UiManager();
-
+        private const int k_LowerEnumBound = 1;
+        private const int k_UpperEnumBound = 8;
         private enum eMenu : byte
         {
             None,
@@ -24,8 +25,8 @@ namespace Ex03.ConsoleUI
         public void Start()
         {
             byte numberForParse;
-            bool continuteOrNot = true;
             string userChoice;
+            bool continueOrNot = true;
             StringBuilder garageUi = new StringBuilder();
 
             garageUi.Append("Hello user: ");
@@ -49,26 +50,29 @@ namespace Ex03.ConsoleUI
             garageUi.AppendLine();
             garageUi.Append("Enter your choice:");
 
-            while (continuteOrNot)
+            while (continueOrNot)
             {
                 Console.WriteLine(garageUi);
                 userChoice = Console.ReadLine();
                 Console.Clear();
                 try
                 {
-                    if (!byte.TryParse(userChoice, out numberForParse))
-                    {
-                        throw new FormatException("Wrong input");
-                    }
+                    checkIfTheInputIsValid(userChoice, out numberForParse);
+                    //if (!byte.TryParse(userChoice, out numberForParse))
+                    //{
+                    //    throw new FormatException("Wrong input");
+                    //}
+                    
+                    checkIfTheInputSuitsTheEnumRange(numberForParse);
 
-                    if (numberForParse < 1 || numberForParse > 8)
-                    {
-                        throw new ValueOutOfRangeException(8, 1);
-                    }
+                    //if (numberForParse < k_LowerEnumBound || numberForParse > k_UpperEnumBound)
+                    //{
+                    //    throw new ValueOutOfRangeException(8, 1);
+                    //}
 
                     if (!LetTheUserChoose(numberForParse))
                     {
-                        continuteOrNot = false;
+                        continueOrNot = false;
                     }
                 }
                 catch (ValueOutOfRangeException ex)
@@ -85,6 +89,22 @@ namespace Ex03.ConsoleUI
                     Console.ReadKey();
                     Console.Clear();
                 }
+            }
+        }
+
+        private void checkIfTheInputSuitsTheEnumRange(byte i_NumberForParse)
+        {
+            if (i_NumberForParse< k_LowerEnumBound || i_NumberForParse > k_UpperEnumBound)
+            {
+                throw new ValueOutOfRangeException(8, 1);
+            }
+        }
+
+        public void checkIfTheInputIsValid(string i_UsersChoice, out byte o_NumberForParse)
+        {
+            if (!byte.TryParse(i_UsersChoice, out o_NumberForParse))
+            {
+                throw new FormatException("Wrong input");
             }
         }
 
