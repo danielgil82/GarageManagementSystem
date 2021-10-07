@@ -92,7 +92,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void checkIfTheInputSuitsTheEnumRange(byte i_NumberForParse)
+        public void checkIfTheInputSuitsTheEnumRange(byte i_NumberForParse)
         {
             if (i_NumberForParse< k_LowerEnumBound || i_NumberForParse > k_UpperEnumBound)
             {

@@ -7,11 +7,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{662F61BA-42A8-4932-AF33-8640E93D68A9}</ProjectGuid>
+    <ProjectGuid>{677062BB-94F6-4581-B858-52965B06D3B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GarageLogic.Tests</RootNamespace>
-    <AssemblyName>GarageLogic.Tests</AssemblyName>
+    <RootNamespace>GarageConsoleUI.Tests</RootNamespace>
+    <AssemblyName>GarageConsoleUI.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -58,10 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GarageManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiMenuTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Ex03.ConsoleUI\GarageConsoleUI.csproj">
+      <Project>{ca1a100e-9310-4d82-a9c6-22847cdc20db}</Project>
+      <Name>GarageConsoleUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Ex03.GarageLogic\GarageLogic.csproj">
       <Project>{1dfa26d4-5fb9-4e09-8bd9-07c8afdb4486}</Project>
       <Name>GarageLogic</Name>

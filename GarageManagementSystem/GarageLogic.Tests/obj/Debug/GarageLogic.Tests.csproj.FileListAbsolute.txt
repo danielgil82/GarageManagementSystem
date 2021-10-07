@@ -17,4 +17,3 @@ C:\Users\Daniel\GitProjects\GarageMangementSystem\GarageManagementSystem\GarageL
 C:\Users\Daniel\GitProjects\GarageMangementSystem\GarageManagementSystem\GarageLogic.Tests\obj\Debug\GarageLogic.Tests.csproj.CopyComplete
 C:\Users\Daniel\GitProjects\GarageMangementSystem\GarageManagementSystem\GarageLogic.Tests\obj\Debug\GarageLogic.Tests.dll
 C:\Users\Daniel\GitProjects\GarageMangementSystem\GarageManagementSystem\GarageLogic.Tests\obj\Debug\GarageLogic.Tests.pdb
-C:\Users\Daniel\GitProjects\GarageMangementSystem\GarageManagementSystem\GarageLogic.Tests\bin\Debug\xunit.runner.json
