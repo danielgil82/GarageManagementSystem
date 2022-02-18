@@ -6,7 +6,6 @@ Console application for Garage management, made in C# and .NET framework. Demons
 ## Key Learnings
 - Polymorphism
 - Collections
-- Using an outer assembly (Dll)
 - Working with multiple projects
 - Exceptions
 - Object inheritance
